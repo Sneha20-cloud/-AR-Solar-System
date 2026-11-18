@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AR Solar System Explorer</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <!-- MindAR -->
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.aframe.js"></script>
+
+</head>
+
+<body>
+
+    <div id="heading">
+        <h1>🌌 AR SOLAR SYSTEM EXPLORER</h1>
+        <p>Explore our Solar System in Augmented Reality</p>
+    </div>
+
+    <div id="status">
+        Scan your Solar System image to begin!
+    </div>
+
+    <div id="controls">
+
+        <button onclick="showPlanet('Sun')">Sun</button>
+        <button onclick="showPlanet('Mercury')">Mercury</button>
+        <button onclick="showPlanet('Venus')">Venus</button>
+        <button onclick="showPlanet('Earth')">Earth</button>
+        <button onclick="showPlanet('Mars')">Mars</button>
+        <button onclick="showPlanet('Jupiter')">Jupiter</button>
+        <button onclick="showPlanet('Saturn')">Saturn</button>
+        <button onclick="showPlanet('Uranus')">Uranus</button>
+        <button onclick="showPlanet('Neptune')">Neptune</button>
+
+        <button onclick="resetSystem()" class="reset">
+            Reset System
+        </button>
+
+    </div>
+
+    <div id="information">
+        <h2>Welcome Explorer!</h2>
+        <p>Scan the marker and select a planet to learn about it.</p>
+    </div>
+
+    <!-- AR SCENE -->
+
+    <a-scene
+        mindar-image="imageTargetSrc: ./targets.mind;"
+        color-space="sRGB"
+        renderer="colorManagement: true"
+        vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false">
+
+        <a-camera
+            position="0 0 0"
+            look-controls="enabled: false">
+        </a-camera>
+
+        <a-entity mindar-image-target="targetIndex: 0">
+
+            <!-- SUN -->
+
+            <a-sphere
+                position="0 0 0.15"
+                radius="0.13"
+                material="color: #FFD700; emissive: #FF9900; emissiveIntensity: 0.8">
+            </a-sphere>
+
+            <!-- MERCURY ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.22"
+                radius-tubular="0.002"
+                material="color: #BBBBBB">
+            </a-torus>
+
+            <a-entity id="mercuryOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 4000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.22 0 0.15"
+                    radius="0.025"
+                    material="color: #A9A9A9">
+                </a-sphere>
+
+            </a-entity>
+
+            <!-- VENUS ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.32"
+                radius-tubular="0.002"
+                material="color: #DDA15E">
+            </a-torus>
+
+            <a-entity id="venusOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 6500; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.32 0 0.15"
+                    radius="0.035"
+                    material="color: #E6B566">
+                </a-sphere>
+
+            </a-entity>
+
+            <!-- EARTH ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.43"
+                radius-tubular="0.002"
+                material="color: #4DA6FF">
+            </a-torus>
+
+            <a-entity id="earthOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 9000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.43 0 0.15"
+                    radius="0.045"
+                    material="color: #1677FF">
+                </a-sphere>
+
+            </a-entity>
+
+            <!-- MARS ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.54"
+                radius-tubular="0.002"
+                material="color: #FF6347">
+            </a-torus>
+
+            <a-entity id="marsOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 12000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.54 0 0.15"
+                    radius="0.035"
+                    material="color: #FF4500">
+                </a-sphere>
+
+            </a-entity>
+
+            <!-- JUPITER ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.66"
+                radius-tubular="0.002"
+                material="color: #D2A679">
+            </a-torus>
+
+            <a-entity id="jupiterOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 16000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.66 0 0.15"
+                    radius="0.065"
+                    material="color: #C88B5A">
+                </a-sphere>
+
+            </a-entity>
+
+            <!-- SATURN ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.78"
+                radius-tubular="0.002"
+                material="color: #F4D58D">
+            </a-torus>
+
+            <a-entity id="saturnOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 20000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.78 0 0.15"
+                    radius="0.055"
+                    material="color: #E6C27A">
+                </a-sphere>
+
+                <a-torus
+                    position="0.78 0 0.15"
+                    radius="0.085"
+                    radius-tubular="0.008"
+                    material="color: #C9A66B">
+                </a-torus>
+
+            </a-entity>
+
+            <!-- URANUS ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="0.90"
+                radius-tubular="0.002"
+                material="color: #80DEEA">
+            </a-torus>
+
+            <a-entity id="uranusOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 25000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="0.90 0 0.15"
+                    radius="0.045"
+                    material="color: #80DEEA">
+                </a-sphere>
+
+            </a-entity>
+
+            <!-- NEPTUNE ORBIT -->
+
+            <a-torus
+                position="0 0 0.1"
+                radius="1.02"
+                radius-tubular="0.002"
+                material="color: #4169E1">
+            </a-torus>
+
+            <a-entity id="neptuneOrbit"
+                      animation="property: rotation; to: 0 0 360; dur: 30000; loop: true; easing: linear">
+
+                <a-sphere
+                    position="1.02 0 0.15"
+                    radius="0.045"
+                    material="color: #4169E1">
+                </a-sphere>
+
+            </a-entity>
+
+        </a-entity>
+
+    </a-scene>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
