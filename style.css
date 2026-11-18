@@ -5,106 +5,276 @@
 
 body {
     margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
-    background:transparent ;
+    background: #050B1C;
     color: white;
+    overflow: hidden;
 }
 
-#heading {
+/* HEADER */
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
     text-align: center;
-    padding: 10px;
-    background: #111B38;
-    position: relative;
+    background: rgba(9, 18, 43, 0.94);
+    border-bottom: 1px solid #34466D;
     z-index: 10;
 }
 
-#heading h1 {
-    color: #FFD700;
-    font-size: 23px;
+#header h1 {
+    margin: 5px;
+    font-size: 22px;
+    color: #FFD166;
 }
 
-#heading p {
-    font-size: 14px;
+#header p {
+    margin: 4px;
+    font-size: 12px;
 }
 
 #status {
-    text-align: center;
-    padding: 10px;
-    background: #18264A;
-    position: relative;
-    z-index: 10;
+    margin-top: 6px;
+    color: #70E1C2;
+    font-size: 13px;
 }
+
+/* PLANET INFORMATION */
+
+#infoPanel {
+    position: fixed;
+    top: 125px;
+    right: 12px;
+    width: 245px;
+    padding: 13px;
+    background: rgba(9, 19, 45, 0.94);
+    border: 1px solid #D8B64B;
+    border-radius: 12px;
+    z-index: 10;
+    max-height: 42vh;
+    overflow-y: auto;
+}
+
+#planetName {
+    color: #FFD166;
+    font-size: 20px;
+    margin-top: 3px;
+}
+
+#planetDescription {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#planetFacts {
+    color: #A9DDFE;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* CONTROL PANEL */
 
 #controls {
     position: fixed;
-    bottom: 12px;
-    left: 0;
-    width: 100%;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96%;
+    max-width: 850px;
+    padding: 9px;
+    background: rgba(9, 18, 43, 0.96);
+    border: 1px solid #34466D;
+    border-radius: 12px;
     text-align: center;
-    z-index: 20;
-    padding: 5px;
+    z-index: 15;
+}
+
+.control-heading {
+    color: #FFD166;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 5px;
+    letter-spacing: 1px;
 }
 
 button {
-    background: #2457A7;
-    color: white;
     border: none;
-    padding: 10px 13px;
-    margin: 3px;
     border-radius: 7px;
+    padding: 9px 12px;
+    margin: 3px;
+    color: white;
+    background: #2457A7;
+    font-size: 12px;
     cursor: pointer;
 }
 
 button:hover {
-    background: #F0B429;
-    color: black;
+    background: #E9B949;
+    color: #071124;
+}
+
+button:active {
+    transform: scale(0.96);
 }
 
 .reset {
-    background: #D94B4B;
+    background: #C94050;
 }
 
-#information {
+.quizButton {
+    background: #7544BD;
+}
+
+#systemButtons {
+    margin-top: 5px;
+}
+
+/* QUIZ WINDOW */
+
+#quizOverlay {
+    display: none;
     position: fixed;
-    top: 120px;
-    right: 10px;
-    width: 210px;
-    background: rgba(10, 20, 45, 0.90);
-    border: 1px solid #FFD700;
-    border-radius: 10px;
-    padding: 10px;
-    z-index: 20;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 50;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+}
+
+#quizBox {
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #101D3C;
+    border: 2px solid #D8B64B;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+#quizBox h2 {
+    color: #FFD166;
+}
+
+#questionNumber {
+    color: #75D7CB;
     font-size: 13px;
 }
 
-#information h2 {
-    color: #FFD700;
+#questionText {
     font-size: 17px;
+    line-height: 1.5;
 }
 
+#answerOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#answerOptions button {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background: #263F70;
+}
+
+#answerOptions button.selected {
+    background: #C08A2D;
+}
+
+#answerOptions button:disabled {
+    opacity: 0.85;
+}
+
+#quizFeedback {
+    font-weight: bold;
+    min-height: 22px;
+}
+
+#nextButton {
+    background: #178D72;
+    display: none;
+}
+
+#quizResult {
+    color: #FFD166;
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.7;
+}
+
+#closeQuizButton {
+    background: #B43C50;
+    display: none;
+}
+
+/* AR SCENE */
+
 a-scene {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: fixed !important;
+    inset: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
 }
 
+/* MOBILE DESIGN */
+
 @media (max-width: 600px) {
-    #information {
-        top: 115px;
+
+    #header h1 {
+        font-size: 17px;
+    }
+
+    #header p {
+        font-size: 10px;
+    }
+
+    #status {
+        font-size: 11px;
+    }
+
+    #infoPanel {
+        top: 112px;
         right: 5px;
         width: 145px;
+        padding: 8px;
+        max-height: 32vh;
+    }
+
+    #planetName {
+        font-size: 15px;
+    }
+
+    #planetDescription {
         font-size: 11px;
+    }
+
+    #planetFacts {
+        font-size: 10px;
+    }
+
+    #controls {
+        width: 98%;
+        bottom: 5px;
+        padding: 5px;
     }
 
     button {
-        padding: 8px;
-        font-size: 11px;
+        padding: 8px 9px;
+        font-size: 10px;
+        margin: 2px;
     }
 
-    #heading h1 {
-        font-size: 18px;
+    .control-heading {
+        font-size: 10px;
     }
 }
+
